@@ -14,52 +14,34 @@ namespace SignalR_Demo
             BundleTable.EnableOptimizations = false;
 
             bundles.UseCdn = true;
-            var cssTransformer = new CssTransformer();
-            var jsTransformer = new JsTransformer();
-            var nullOrderer = new NullOrderer();
 
-            var cssBundle = new CustomStyleBundle("~/bundles/css");
-            cssBundle.Include("~/Content/Site.less", "~/Content/bootstrap/bootstrap.less");
-            cssBundle.Transforms.Add(cssTransformer);
-            cssBundle.Orderer = nullOrderer;
-            bundles.Add(cssBundle);
+            bundles.Add(new StyleBundle("~/bundles/css")
+                .Include("~/Content/bootstrap/bootstrap.less")
+                .Include("~/Content/angular-csp.css")
+                .Include("~/Content/Site.less"));
 
-            var jqueryBundle = new CustomScriptBundle("~/bundles/jquery");
-            jqueryBundle.Include("~/Scripts/jquery-{version}.js");
-            jqueryBundle.Transforms.Add(jsTransformer);
-            jqueryBundle.Orderer = nullOrderer;
-            bundles.Add(jqueryBundle);
+            bundles.Add(new ScriptBundle("~/bundles/jquery")
+                .Include("~/Scripts/bundles/jquery/jquery-{version}.js"));
 
-            var jqueryvalBundle = new CustomScriptBundle("~/bundles/jqueryval");
-            jqueryvalBundle.Include("~/Scripts/jquery.validate*");
-            jqueryvalBundle.Transforms.Add(jsTransformer);
-            jqueryvalBundle.Orderer = nullOrderer;
-            bundles.Add(jqueryvalBundle);
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval")
+                .Include("~/Scripts/bundles/jquery/jquery.validate*"));
 
-            var signalrBundle = new CustomScriptBundle("~/bundles/signalr");
-            signalrBundle.Include("~/Scripts/jquery.signalR-{version}.js");
-            signalrBundle.Transforms.Add(jsTransformer);
-            signalrBundle.Orderer = nullOrderer;
-            bundles.Add(signalrBundle);
+            bundles.Add(new ScriptBundle("~/bundles/signalr")
+                .Include("~/Scripts/bundles/jquery/jquery.signalR-{version}.js"));
+            
+            bundles.Add(new ScriptBundle("~/bundles/modernizr")
+                .Include("~/Scripts/bundles/modernizr/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap")
+                .Include("~/Scripts/bundles/bootstrap/bootstrap.js")
+                .Include("~/Scripts/bundles/respond/respond.js"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
+            bundles.Add(new ScriptBundle("~/bundles/angular")
+                .Include("~/Scripts/bundles/angular/angular.js")
+                .Include("~/Scripts/bundles/angular/*.js"));
 
-            var modernizrBundle = new CustomScriptBundle("~/bundles/modernizr");
-            modernizrBundle.Include("~/Scripts/modernizr-*");
-            modernizrBundle.Transforms.Add(jsTransformer);
-            modernizrBundle.Orderer = nullOrderer;
-            bundles.Add(modernizrBundle);
-
-
-            var bootstrapBundle = new CustomScriptBundle("~/bundles/bootstrap");
-            bootstrapBundle.Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js");
-            bootstrapBundle.Transforms.Add(jsTransformer);
-            bootstrapBundle.Orderer = nullOrderer;
-            bundles.Add(bootstrapBundle);
-
-
+            bundles.Add(new ScriptBundle("~/apps/feeds")
+                .Include("~/Scripts/apps/feeds/*.js"));
         }
     }
 }
