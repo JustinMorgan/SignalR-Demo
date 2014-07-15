@@ -1,42 +1,39 @@
-﻿(function () {
-    "use strict";
-    angular.module('Feeds')
-        .factory('FeedsResource', [
-            function () {
-                //$resource('api/feeds/:id', { id: '@id' }, {
-                //    list: { method: 'GET', url: 'api/feeds', isArray: true }
-                //});
+(function() {
+  "use strict";  angular.module('Feeds').factory('FeedsResource', [
+    function() {
+      var hub, trigger, _on;
 
-                var hub = $.connection.feedHub,
-                    trigger = function (clientEvent, data, retriesLeft) {
-                        retriesLeft = retriesLeft || 5;
+      hub = $.connection.feedHub;
+      trigger = function(clientEvent, data, retriesLeft) {
+        if (retriesLeft == null) {
+          retriesLeft = 5;
+        }
+        return hub.server[clientEvent](data).fail(function() {
+          if (retriesLeft) {
+            console.log('retrying', retriesLeft, data.Body);
+            return setTimeout(function() {
+              console.log('triggering', retriesLeft, data.Body);
+              return trigger(clientEvent, data, retriesLeft - 1);
+            }, 1000 * (5 - retriesLeft));
+          } else {
+            return console.warn('ERROR: Could not connect to the feed server.' + 'Please check your Internet connection.');
+          }
+        });
+      };
+      _on = function(serverEvent, handler) {
+        return hub.client[serverEvent] = handler;
+      };
+      $.connection.hub.start();
+      $.connection.hub.disconnected(function() {
+        return setTimeout(function() {
+          return $.connection.hub.start();
+        }, 5000);
+      });
+      return {
+        trigger: trigger,
+        on: _on
+      };
+    }
+  ]);
 
-                        hub.server[clientEvent](data)
-                            .fail(function () {
-                                if (retriesLeft) {
-                                    console.log('retrying', retriesLeft);
-                                    setTimeout(function () {
-                                        console.log('triggering', retriesLeft);
-                                        trigger(clientEvent, data, retriesLeft - 1);
-                                    }, 100);
-                                } else {
-                                    console.log('Could not connect to the feed server. Please check your Internet connection.');
-                                }
-                            });
-                    },
-                    on = function (serverEvent, handler) {
-                        hub.client[serverEvent] = handler;
-                    };
-
-                $.connection.hub.start();
-                $.connection.hub.disconnected(function () {
-                    setTimeout($.connection.hub.start, 5000); // Restart connection after 5 seconds
-                });
-
-                return {
-                    trigger: trigger,
-                    on: on
-                };
-            }
-        ]);
-})();
+}).call(this);

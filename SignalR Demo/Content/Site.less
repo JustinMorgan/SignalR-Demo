@@ -41,11 +41,31 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+.pillify(@bgcolor) {
+    li {
+        padding:5px 10px;
+    }
+    li:first-child {
+        color: white;
+        background-color: @bgcolor;
+    }
+}
+
 .feeds {
     form {
         margin-top: 15px;
     }
-    [type="submit"] {
-        margin-left: 10px;
+    [class*="col-md-"] {
+        margin-right: 10px;
+        [type="number"] {
+            width:115%;
+        }
+    }
+    .feed- {
+	    &1 {.pillify(purple);}
+        &2 {.pillify(royalblue);}
+        &3 {.pillify(green);}
+        &4 {.pillify(crimson);}
+        &5 {.pillify(orange);}
     }
 }
