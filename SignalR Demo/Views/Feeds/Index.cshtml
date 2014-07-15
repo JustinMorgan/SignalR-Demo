@@ -5,18 +5,23 @@
 
     <form>
         <section class="container form-group row">
-            <input type="type" ng-model="post.FeedName" placeholder="Feed Name" class="form-control col-md-3">
-            <input type=" text" ng-model="post.Body" placeholder="New Post" class="form-control col-md-3" />
+            <div class="col-md-2">
+                <div class="input-group">
+                    <span class="input-group-addon">feed id</span>
+                    <input type="number" ng-model="post.FeedName" placeholder="Feed Name" class="form-control" />
+                </div>
+            </div>
+            <input type="text" ng-model="post.Body" placeholder="New Post" class="form-control col-md-2" />
             <input type="submit" ng-click="addPost()" class="btn btn-primary btn-large col-md-1" value="Post &raquo;" />
             <div class="col-md-2 input-group">
-                <span class="input-group-addon">max results shown</span>
-                <input type="number" ng-model="wallLength" class="form-control" ng-init="wallLength=5" />
+                <span class="input-group-addon">max posts</span>
+                <input type="number" ng-model="wallLength" class="form-control" ng-init="wallLength=10" />
             </div>
         </section>
     </form>
     <section class="ticker clearfix">
-        <ul ng-repeat="item in items | limitTo:wallLength" ng-animate="'slide'" style="width:100%" class="list-inline {{item.FeedName.replace(' ', '-')}}">
-            <li class="btn disabled">{{item.FeedName}}</li>
+        <ul ng-repeat="item in items | limitTo:wallLength" class="list-inline feed-{{item.FeedName}}">
+            <li class="btn disabled">Feed {{item.FeedName}}</li>
             <li>{{item.Body}}</li>
             <li>{{item.DateTime | date:'h:mm:ss a'}}</li>
         </ul>

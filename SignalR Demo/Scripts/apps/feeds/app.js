@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
     angular.module('Feeds.services', ['ui.router', 'ngResource']);
-    angular.module('Feeds.directives', ['common-utils', 'ui.bootstrap', 'ngAnimate']);
+    angular.module('Feeds.directives', ['common-utils', 'ui.bootstrap']);
     angular.module('Feeds', ['Feeds.services', 'Feeds.directives'])
         .config([
             '$stateProvider', '$urlRouterProvider',

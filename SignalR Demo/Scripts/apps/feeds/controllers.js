@@ -5,16 +5,14 @@
             '$scope', 'FeedsResource',
             function ($scope, FeedsResource) {
                 var count = 1,
-                    maxWallLength = 30,
-                    feedId = Math.ceil(Math.random() * 5);
+                    maxWallLength = 30;
 
                 $.extend($scope, {
                     items: [],
                     addFeed: '',
-                    feedCss: 'feed-' + feedId,
                     post: {
                         Body: 'test 1',
-                        FeedName: 'feed ' + feedId
+                        FeedName: Math.ceil(Math.random() * 5)
                     },
                     addPost: function () {
                         FeedsResource.trigger('post', $.extend($scope.post, {
@@ -22,11 +20,7 @@
                             Id: guid()
                         }));
                         $scope.post.Body = "test " + (++count);
-                    },
-                    subscribe: function (feedName) {
-                        FeedsResource.trigger('subscribe', feedName);
-                        return false;
-                    },
+                    }
                 });
 
                 FeedsResource.on('publish', function (data) {
