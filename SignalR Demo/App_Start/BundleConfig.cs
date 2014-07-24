@@ -23,6 +23,12 @@ namespace SignalR_Demo
             bundles.Add(new ScriptBundle("~/bundles/jquery")
                 .Include("~/Scripts/bundles/jquery/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui")
+                .Include("~/Scripts/bundles/jquery-ui/jquery-ui-{version}.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui/select2")
+                .Include("~/Scripts/bundles/jquery-ui/select2-locales/*.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval")
                 .Include("~/Scripts/bundles/jquery/jquery.validate*"));
 
@@ -42,6 +48,9 @@ namespace SignalR_Demo
 
             bundles.Add(new ScriptBundle("~/apps/feeds")
                 .Include("~/Scripts/apps/feeds/*.js"));
+
+            bundles.Add(new ScriptBundle("~/apps/blocks")
+                .Include("~/Scripts/apps/blocks.js"));
         }
     }
 }

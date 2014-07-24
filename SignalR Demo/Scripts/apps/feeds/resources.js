@@ -1,8 +1,8 @@
 (function() {
-  "use strict";  angular.module('Feeds').factory('FeedsResource', [
+  "use strict";
+  angular.module('Feeds').factory('FeedsResource', [
     '$resource', function($resource) {
       var hub, trigger, _on;
-
       hub = $.connection.feedHub;
       trigger = function(clientEvent, data, retriesLeft) {
         if (retriesLeft == null) {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using SignalR_Demo.Messaging;
 
 [assembly: OwinStartupAttribute(typeof(SignalR_Demo.Startup))]
 namespace SignalR_Demo
@@ -9,7 +10,8 @@ namespace SignalR_Demo
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            app.MapSignalR();
+            app.MapSignalR(); //bootstrap all hubs
+            app.MapSignalR<BlocksConnection>("/blocksConnection"); //bootstrap BlocksConnection
         }
     }
 }

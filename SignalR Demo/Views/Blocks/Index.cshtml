@@ -1,0 +1,13 @@
+﻿<section class="blocks">
+    <div draggable id="circle"></div>
+</section>
+<div id="info"></div>
+<div id="output"></div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/signalr")
+    @*@Scripts.Render("~/signalr/hubs")*@
+    @Scripts.Render("~/apps/blocks")
+}

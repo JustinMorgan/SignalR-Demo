@@ -41,6 +41,10 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+[ng-cloak] {
+    visibility:hidden;
+}
+
 .pillify(@bgcolor) {
     li {
         padding:5px 10px;
@@ -72,4 +76,15 @@ input[type="checkbox"].input-validation-error {
         &4 {.pillify(crimson);}
         &5 {.pillify(orange);}
     }
+}
+.blocks {
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+}
+#circle {
+    width: 100px;
+    height: 100px;
+    background-color: #00cc00;
+    border-radius: 50%;
 }
