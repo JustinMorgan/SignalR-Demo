@@ -1,8 +1,8 @@
 ﻿# CoffeeScript
 "use strict";
 angular.module('Feeds')
-    .factory('FeedsResource', [
-        () ->
+    .factory('FeedsResource', ['$resource',
+        ($resource) ->
             #$resource('api/feeds/:id', { id: '@id' }, {
             #    list: { method: 'GET', url: 'api/feeds', isArray: true }
             #});
@@ -31,6 +31,17 @@ angular.module('Feeds')
                   $.connection.hub.start()
                 , 5000 #Restart connection after 5 seconds
 
-            trigger: trigger,
-            on: _on
+            hub:
+              trigger: trigger
+              on: _on
+            api: $resource(
+                    'api/feeds/:id'
+                    { id: '@id' }
+                    { list: 
+                        method: 'GET'
+                        url: 'api/feeds'
+                        isArray: true
+                      update:
+                        method: 'PUT'
+                    })
     ])

@@ -16,6 +16,7 @@ namespace SignalR_Demo.Hubs
         public void Post(Post post)
         {
             Task.Factory.StartNew(() => { Clients.All.publish(post); });
+            Task.Factory.StartNew(() => { _repo.Add(post); });
         }
     }
 }

@@ -1,6 +1,6 @@
 (function() {
   "use strict";  angular.module('Feeds').factory('FeedsResource', [
-    function() {
+    '$resource', function($resource) {
       var hub, trigger, _on;
 
       hub = $.connection.feedHub;
@@ -30,8 +30,22 @@
         }, 5000);
       });
       return {
-        trigger: trigger,
-        on: _on
+        hub: {
+          trigger: trigger,
+          on: _on
+        },
+        api: $resource('api/feeds/:id', {
+          id: '@id'
+        }, {
+          list: {
+            method: 'GET',
+            url: 'api/feeds',
+            isArray: true
+          },
+          update: {
+            method: 'PUT'
+          }
+        })
       };
     }
   ]);

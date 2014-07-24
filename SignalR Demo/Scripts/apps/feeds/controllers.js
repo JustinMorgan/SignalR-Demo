@@ -8,14 +8,14 @@
                     maxWallLength = 30;
 
                 $.extend($scope, {
-                    items: [],
-                    addFeed: '',
+                    items: FeedsResource.api.list(),
+                    wallLength: 10,
                     post: {
                         Body: 'test 1',
                         FeedName: Math.ceil(Math.random() * 5)
                     },
                     addPost: function () {
-                        FeedsResource.trigger('post', $.extend($scope.post, {
+                        FeedsResource.hub.trigger('post', $.extend($scope.post, {
                             DateTime: new Date(),
                             Id: guid()
                         }));
@@ -23,7 +23,7 @@
                     }
                 });
 
-                FeedsResource.on('publish', function (data) {
+                FeedsResource.hub.on('publish', function (data) {
                     $scope.items.unshift(data);
                     while ($scope.items.length > maxWallLength) {
                         $scope.items.pop();

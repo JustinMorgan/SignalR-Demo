@@ -17,7 +17,7 @@ namespace SignalR_Demo
 
             bundles.Add(new StyleBundle("~/bundles/css")
                 .Include("~/Content/bootstrap/bootstrap.less")
-                .Include("~/Content/angular-csp.css")
+                .Include("~/Content/angular-ui.css")
                 .Include("~/Content/Site.less"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery")

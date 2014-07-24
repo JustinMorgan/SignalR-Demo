@@ -13,11 +13,5 @@ namespace SignalR_Demo.Controllers
         {
             return View();
         }
-
-        [HttpPost]
-        public ActionResult Add(Feed model)
-        {
-            return RedirectToAction("Index");
-        }
     }
 }

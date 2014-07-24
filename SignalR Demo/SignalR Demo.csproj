@@ -226,21 +226,16 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="_repo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\angular-ui.css" />
     <Content Include="Content\angular-ui.min.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\select2-spinner.gif" />
     <Content Include="Content\css\select2.css" />
     <Content Include="Content\css\select2.png" />
     <Content Include="Content\css\select2x2.png" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\navbar.less" />
@@ -249,9 +244,6 @@
     </None>
     <Content Include="Content\Site.less" />
     <Content Include="Scripts\apps\feeds\app.js" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap\wells.less" />
     <Content Include="Content\bootstrap\utilities.less" />
     <Content Include="Content\bootstrap\type.less" />
@@ -406,11 +398,6 @@
     <Content Include="Scripts\bundles\angular\angular.min.js" />
     <Content Include="Scripts\bundles\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bundles\bootstrap\bootstrap.min.js" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\bundles\angular\errors.json" />
     <Content Include="Scripts\bundles\angular\angular-touch.min.js.map" />
     <Content Include="Scripts\bundles\angular\angular-sanitize.min.js.map" />
@@ -746,7 +733,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Feeds\Index.cshtml" />
-    <Content Include="Views\Feeds\_Add.cshtml" />
     <Content Include="Scripts\bundles\respond\version.json" />
     <Content Include="Views\Feeds\_Post.cshtml" />
   </ItemGroup>
