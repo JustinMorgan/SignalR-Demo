@@ -1,90 +1,47 @@
-﻿"use strict";
+﻿#--------- Persistent connection version ----------------
+do () ->
+  "use strict";  
+  id = do guid
+  connection = $.connection '/blocksConnection'
+  do connection.start
 
-info = $ '#info' 
-output = $ '#output' 
-id = do guid
-do (connection = $.connection '/blocksConnection').start
-
-draggable = $('[draggable]').draggable 
+  draggable = $('.persistent [draggable]').draggable 
     drag: (event, ui) ->
-      connection.send 
-        method: "drag"
-        sender: id
-        coords:
+      connection.start().done () ->
+        connection.send 
+          method: "drag"
+          sender: id
           top: ui.position.top
           left: ui.position.left
-      info.text """
-        position: { 
-          top: #{ui.position.top}, 
-          left: #{ui.position.left} 
-        };
-        offset: { 
-          top: #{ui.offset.top}, 
-          left: #{ui.offset.left} 
-        };
-        id: \"#{id}\"
-      """
   .css "background-color", "#" + id.substr(0, 6)
-  
-methods = 
-  move: ({top, left}, sender) -> 
-    output.text """ 
-        received: {
-          top: #{top}, 
-          left: #{left} 
-        }; 
-        sender: \"#{sender}\" 
-      """
+
+  connection.received (data) ->
+    client[data.method](data.top, data.left, data.sender);
+
+  client = 
+    move: (top, left, sender) -> 
+      if sender isnt id  
+        draggable.css {
+          top
+          left
+        }
+
+#---------- Hub version ------------------------
+do () ->
+  "use strict";
+  id = do guid
+  hub = $.connection.blocksHub
+  do $.connection.hub.start
+
+  draggable = $('.hub [draggable]').draggable 
+    drag: (event, ui) ->
+      $.connection.hub.start().done () ->
+        hub.server.drag id, ui.position.top, ui.position.left
+  .css "background-color", "#" + id.substr(0, 6)
+
+  hub.client.move = (top, left, sender) -> 
     if sender isnt id  
       draggable.css {
         top
         left
       }
-
-connection.received (data) ->
-  methods[data.method](data.coords, data.sender);
-
-#--------------------------------------
-id = do guid
-do (connection = $.connection '/blocksConnection').start
-
-draggable = $('.persistent [draggable]').draggable 
-    drag: (event, ui) ->
-      connection.send 
-        method: "drag"
-        sender: id
-        coords:
-          top: ui.position.top
-          left: ui.position.left
-  .css "background-color", "#" + id.substr(0, 6)
-
-methods = 
-  move: ({top, left}, sender) -> 
-    if sender isnt id  
-      draggable.css {
-        top
-        left
-      }
-
-connection.received (data) ->
-  methods[data.method](data.coords, data.sender);
-#--------------------------------------
-id = do guid
-do (hub = $.connection.blockHub).start
-
-draggable = $('.hub [draggable]').draggable 
-    drag: (event, ui) ->
-      hub.server.drag
-        sender: id
-        coords:
-          top: ui.position.top
-          left: ui.position.left
-  .css "background-color", "#" + id.substr(0, 6)
-
-hub.client.move = ({top, left}, sender) -> 
-    if sender isnt id  
-      draggable.css {
-        top
-        left
-      }
-#--------------------------------------

@@ -17,7 +17,9 @@ namespace SignalR_Demo.Messaging
             {
                 return Connection.Broadcast(new {
                     method = "move",
-                    values.coords
+                    values.top,
+                    values.left,
+                    values.sender
                 });
             }
             
@@ -26,9 +28,9 @@ namespace SignalR_Demo.Messaging
     }
     public class BlocksHub : Hub
     {
-        public void Drag(Guid sender, dynamic coords)
+        public void Drag(Guid sender, int top, int left)
         {
-            Clients.All.move(coords, sender);
+            Clients.All.move(top, left, sender);
         }
     }
 }

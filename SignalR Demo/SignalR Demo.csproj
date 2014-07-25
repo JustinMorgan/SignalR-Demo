@@ -221,7 +221,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Messaging\BlocksConnection.cs" />
+    <Compile Include="Messaging\Blocks.cs" />
     <Compile Include="Messaging\FeedHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
