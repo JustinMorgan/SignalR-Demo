@@ -45,14 +45,21 @@ input[type="checkbox"].input-validation-error {
     visibility:hidden;
 }
 
+@purple: #800080;
+@royalblue: #4169E1;
+@limegreen: #32CD32;
+@crimson: #DC143C;
+@orange: #FFA500;
+
 .pillify(@bgcolor) {
     li {
         padding:5px 10px;
-    }
-    li:first-child {
-        color: white;
-        background-color: @bgcolor;
         border-radius: 3px;
+    }
+    input, li:first-child {
+        background-color: @bgcolor;
+        border: 1px solid desaturate(@bgcolor, 25%);
+        color: white;
     }
 }
 
@@ -70,11 +77,11 @@ input[type="checkbox"].input-validation-error {
         margin-left: 20px;
     }
     .feed- {
-	    &1 {.pillify(purple);}
-        &2 {.pillify(royalblue);}
-        &3 {.pillify(limegreen);}
-        &4 {.pillify(crimson);}
-        &5 {.pillify(orange);}
+	    &1 {.pillify(@purple);}
+        &2 {.pillify(@royalblue);}
+        &3 {.pillify(@limegreen);}
+        &4 {.pillify(@crimson);}
+        &5 {.pillify(@orange);}
     }
 }
 .blocks {

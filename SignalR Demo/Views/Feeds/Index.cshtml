@@ -4,8 +4,8 @@
     <form>
         <section class="container form-group row">
             <div class="col-md-2">
-                <div class="input-group">
-                    <span class="input-group-addon">feed id</span>
+                <div class="input-group feed-{{post.FeedName}}">
+                    <span class="input-group-addon">feed</span>
                     <input type="number" ng-model="post.FeedName" min="1" max="5" class="form-control" />
                 </div>
             </div>
