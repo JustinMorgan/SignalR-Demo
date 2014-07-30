@@ -50,7 +50,7 @@ namespace SignalR_Demo
                 .Include("~/Scripts/apps/feeds/*.js"));
 
             bundles.Add(new ScriptBundle("~/apps/blocks")
-                .Include("~/Scripts/apps/blocks.js"));
+                .Include("~/Scripts/apps/blocks/*.js"));
         }
     }
 }

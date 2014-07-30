@@ -13,17 +13,18 @@ namespace SignalR_Demo.Messaging
         protected override Task OnReceived(IRequest request, string connectionId, string data)
         {
             var values = Json.Decode(data);
-            if (values.method == "drag")
+            switch (values.method as string)
             {
-                return Connection.Broadcast(new {
-                    method = "move",
-                    values.top,
-                    values.left,
-                    values.sender
-                });
+                case "drag":
+                    return Connection.Broadcast(new {
+                        method = "move",
+                        values.top,
+                        values.left,
+                        values.sender
+                    });
+                default:
+                    throw new NotImplementedException();
             }
-            
-            throw new NotImplementedException();
         }
     }
     public class BlocksHub : Hub

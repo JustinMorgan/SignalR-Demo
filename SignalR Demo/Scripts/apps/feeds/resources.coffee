@@ -9,9 +9,9 @@ angular.module('Feeds')
                 hub.server[clientEvent](data)
                     .fail () ->
                       if retriesLeft
-                        console.log 'retrying', retriesLeft, data.Body
+                        console.debug 'retrying', retriesLeft, data.Body
                         setTimeout () ->
-                            console.log 'triggering', retriesLeft, data.Body
+                            console.debug 'triggering', retriesLeft, data.Body
                             trigger clientEvent, data, retriesLeft - 1 
                         , 1000 * (5 - retriesLeft)
                       else

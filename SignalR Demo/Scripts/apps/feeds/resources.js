@@ -10,9 +10,9 @@
         }
         return hub.server[clientEvent](data).fail(function() {
           if (retriesLeft) {
-            console.log('retrying', retriesLeft, data.Body);
+            console.debug('retrying', retriesLeft, data.Body);
             return setTimeout(function() {
-              console.log('triggering', retriesLeft, data.Body);
+              console.debug('triggering', retriesLeft, data.Body);
               return trigger(clientEvent, data, retriesLeft - 1);
             }, 1000 * (5 - retriesLeft));
           } else {
