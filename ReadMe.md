@@ -1,4 +1,4 @@
-##SignalR DevSession, 2014-07-30
+#SignalR DevSession, 2014-07-30
 
 This repo contains demo code and PowerPoint slides for my DevSession on SignalR. The code was partly built on the "ASP.NET MVC5 with Bootstrap 3.1.1 LESS" template available online, and contains a few drop-ins, including:
 
